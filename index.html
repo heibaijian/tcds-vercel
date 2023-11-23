@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataAPI Diagram</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        canvas {
+            width: 400px; /* Set the desired width */
+            height: 300px; /* Set the desired height */
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>DataAPI Diagram</h1>
+<canvas id="todoChart"></canvas>
+
+<script>
+    // Replace with your Data API URL and credentials
+    const apiUrl = 'https://us-west-2.data.tidbcloud.com/api/v1beta/app/dataapp-AwTkoIEK/endpoint/countByStatus';
+    const publicKey = 'K0QSGRH0';
+    const privateKey = 'xxx';
+
+    // Define light colors for the chart bars
+    const lightColors = ['#FFDDC1', '#C1FFDD', '#DDC1FF', '#FFFFC1', '#C1FFFF', '#FFC1FF'];
+
+    // Fetch data from Data API
+    const fetchData = async () => {
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'GET',
+                headers: new Headers({
+                    'Authorization': `Basic ${btoa(`${publicKey}:${privateKey}`)}`
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.statusText}`);
+            }
+
+            const responseData = await response.json();
+            console.log('API Response Data:', responseData);
+            return responseData.data.rows;
+        } catch (error) {
+            console.error('Error:', error.message);
+            return [];
+        }
+    };
+
+    // Process and display data in a chart
+    const renderChart = (data) => {
+        if (data.length === 0) {
+            console.error('No data to display.');
+            return;
+        }
+
+        const statusLabels = data.map(row => row.status);
+        const countData = data.map(row => row['count(1)']);
+
+        console.log('Status Labels:', statusLabels);
+        console.log('Count Data:', countData);
+
+        const ctx = document.getElementById('todoChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: statusLabels,
+                datasets: [{
+                    label: '', // Empty string to remove the label
+                    data: countData,
+                    backgroundColor: lightColors,
+                    borderColor: '#4CAF50',
+                    borderWidth: 1,
+                }],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            generateLabels: function(chart) {
+                                return [];
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    };
+
+    // Execute the fetch and render functions
+    fetchData().then(data => renderChart(data));
+</script>
+</body>
+</html>

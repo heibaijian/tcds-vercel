@@ -1,7 +1,7 @@
 {
-  "app_id": "dataapp-HHkFgkJL",
-  "app_name": "Todo App",
+  "app_id": "dataapp-AwTkoIEK",
+  "app_name": "vercel-dataapp",
   "app_type": "dataapp",
-  "description": "This is a Task Tracking Application designed to efficiently manage tasks through actions like adding, deleting, updating, and retrieving tasks. ",
+  "description": "",
   "app_version": "1.0.0"
 }

@@ -72,9 +72,9 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
       }
       if (type === 'update') {
         if (
-          todo.task !== title
-          || todo.status !== status
-          || todo.description !== desp
+          todo.task !== title ||
+          todo.status !== status ||
+          todo.description !== desp
         ) {
           await dispatch(updateTodoItem({ ...todo, task: title, status }));
           toast.success('Task Updated successfully');
@@ -134,10 +134,10 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
               <label htmlFor="desp">
                 Description
                 <input
-                    type="text"
-                    id="desp"
-                    value={desp}
-                    onChange={(e) => setDesp(e.target.value)}
+                  type="text"
+                  id="desp"
+                  value={desp}
+                  onChange={(e) => setDesp(e.target.value)}
                 />
               </label>
               <label htmlFor="type">

@@ -37,17 +37,17 @@ const dropIn = {
 function TodoModal({ type, modalOpen, setModalOpen, todo }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
-  const [desp, setDesp] = useState('');
+  const [desc, setDesc] = useState('');
   const [status, setStatus] = useState('incomplete');
 
   useEffect(() => {
     if (type === 'update' && todo) {
       setTitle(todo.task);
-      setDesp(todo.description);
+      setDesc(todo.description);
       setStatus(todo.status);
     } else {
       setTitle('');
-      setDesp('');
+      setDesc('');
       setStatus('incomplete');
     }
   }, [type, todo, modalOpen]);
@@ -64,6 +64,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
           addTodoItem({
             id: uuid(),
             title,
+            desc,
             status,
             time: format(new Date(), 'p, MM/dd/yyyy'),
           })
@@ -74,9 +75,11 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
         if (
           todo.task !== title ||
           todo.status !== status ||
-          todo.description !== desp
+          todo.description !== desc
         ) {
-          await dispatch(updateTodoItem({ ...todo, task: title, status }));
+          await dispatch(
+            updateTodoItem({ ...todo, task: title, status, desc })
+          );
           toast.success('Task Updated successfully');
           dispatch(fetchTodoList());
         } else {
@@ -131,13 +134,13 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </label>
-              <label htmlFor="desp">
+              <label htmlFor="desc">
                 Description
                 <input
                   type="text"
-                  id="desp"
-                  value={desp}
-                  onChange={(e) => setDesp(e.target.value)}
+                  id="desc"
+                  value={desc}
+                  onChange={(e) => setDesc(e.target.value)}
                 />
               </label>
               <label htmlFor="type">

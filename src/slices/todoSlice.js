@@ -6,10 +6,14 @@ const initialValue = {
   todoList: [],
 };
 
-const apiUrl =
-  'https://us-east-1.data.tidbcloud.com/api/v1beta/app/dataapp-JrRoFmvr/endpoint/todos';
-const publicKey = 'C0S3RM70';
-const privateKey = 'e9dc2187-c344-4a9e-afb2-78d1318d4900';
+const apiUrl = process.env.APIURL;
+const publicKey = process.env.REACT_APP_PUBLICKEY;
+const privateKey = process.env.REACT_APP_PRIVATEKEY;
+// const apiUrl =
+//   'https://us-east-1.data.tidbcloud.com/api/v1beta/app/dataapp-JrRoFmvr/endpoint/todos';
+// const publicKey = 'C0S3RM70';
+// const privateKey = 'e9dc2187-c344-4a9e-afb2-78d1318d4900';
+
 
 export const fetchTodoList = createAsyncThunk('getTodoList', async () => {
   const response = await fetch(apiUrl, {
@@ -30,7 +34,7 @@ export const addTodoItem = createAsyncThunk('addTodoItem', async (data) => {
       Authorization: `Basic ${btoa(`${publicKey}:${privateKey}`)}`,
     }),
     body: JSON.stringify({
-      description: data.description,
+      description: data.desc,
       status: data.status,
       task: data.title,
     }),
@@ -55,7 +59,7 @@ export const updateTodoItem = createAsyncThunk(
         id: data.id,
         status: data.status,
         task: data.task,
-        description: data.description,
+        description: data.desc,
       }),
     });
   }

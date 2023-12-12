@@ -67,8 +67,8 @@ function TodoItem({ todo }) {
             >
               {todo.task}
             </p>
-            <p className={styles.time}>{todo.desp}</p>
-            <p className={styles.time}>{todo.updated_at}</p>
+            <p className={styles.todoDesc}>description: {todo.description}</p>
+            <p className={styles.time}>updated_time: {todo.updated_at}</p>
           </div>
         </div>
         <div className={styles.todoActions}>

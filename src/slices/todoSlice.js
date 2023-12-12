@@ -6,7 +6,7 @@ const initialValue = {
   todoList: [],
 };
 
-const apiUrl = process.env.APIURL;
+const apiUrl = process.env.REACT_APP_APIURL;
 const publicKey = process.env.REACT_APP_PUBLICKEY;
 const privateKey = process.env.REACT_APP_PRIVATEKEY;
 // const apiUrl =

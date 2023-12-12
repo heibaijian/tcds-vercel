@@ -5,7 +5,11 @@ import { useDispatch } from 'react-redux';
 import { AnimatePresence, motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
-import { addTodo, updateTodo } from '../slices/todoSlice';
+import {
+  fetchTodoList,
+  addTodoItem,
+  updateTodoItem,
+} from '../slices/todoSlice';
 import styles from '../styles/modules/modal.module.scss';
 import Button from './Button';
 
@@ -37,7 +41,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
 
   useEffect(() => {
     if (type === 'update' && todo) {
-      setTitle(todo.title);
+      setTitle(todo.task);
       setStatus(todo.status);
     } else {
       setTitle('');
@@ -45,7 +49,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
     }
   }, [type, todo, modalOpen]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (title === '') {
       toast.error('Please enter a title');
@@ -53,20 +57,21 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
     }
     if (title && status) {
       if (type === 'add') {
-        dispatch(
-          addTodo({
+        await dispatch(
+          addTodoItem({
             id: uuid(),
             title,
             status,
             time: format(new Date(), 'p, MM/dd/yyyy'),
           })
         );
-        toast.success('Task added successfully');
+        dispatch(fetchTodoList());
       }
       if (type === 'update') {
-        if (todo.title !== title || todo.status !== status) {
-          dispatch(updateTodo({ ...todo, title, status }));
+        if (todo.task !== title || todo.status !== status) {
+          await dispatch(updateTodoItem({ ...todo, task: title, status }));
           toast.success('Task Updated successfully');
+          dispatch(fetchTodoList());
         } else {
           toast.error('No changes made');
           return;

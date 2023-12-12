@@ -30,7 +30,7 @@ export const addTodoItem = createAsyncThunk('addTodoItem', async (data) => {
       Authorization: `Basic ${btoa(`${publicKey}:${privateKey}`)}`,
     }),
     body: JSON.stringify({
-      description: '',
+      description: data.description,
       status: data.status,
       task: data.title,
     }),
@@ -55,6 +55,7 @@ export const updateTodoItem = createAsyncThunk(
         id: data.id,
         status: data.status,
         task: data.task,
+        description: data.description,
       }),
     });
   }

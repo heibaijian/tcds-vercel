@@ -37,14 +37,17 @@ const dropIn = {
 function TodoModal({ type, modalOpen, setModalOpen, todo }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
+  const [desp, setDesp] = useState('');
   const [status, setStatus] = useState('incomplete');
 
   useEffect(() => {
     if (type === 'update' && todo) {
       setTitle(todo.task);
+      setDesp(todo.description);
       setStatus(todo.status);
     } else {
       setTitle('');
+      setDesp('');
       setStatus('incomplete');
     }
   }, [type, todo, modalOpen]);
@@ -68,7 +71,11 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
         dispatch(fetchTodoList());
       }
       if (type === 'update') {
-        if (todo.task !== title || todo.status !== status) {
+        if (
+          todo.task !== title
+          || todo.status !== status
+          || todo.description !== desp
+        ) {
           await dispatch(updateTodoItem({ ...todo, task: title, status }));
           toast.success('Task Updated successfully');
           dispatch(fetchTodoList());
@@ -122,6 +129,15 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
                   id="title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                />
+              </label>
+              <label htmlFor="desp">
+                Description
+                <input
+                    type="text"
+                    id="desp"
+                    value={desp}
+                    onChange={(e) => setDesp(e.target.value)}
                 />
               </label>
               <label htmlFor="type">

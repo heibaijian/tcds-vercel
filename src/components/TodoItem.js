@@ -67,6 +67,7 @@ function TodoItem({ todo }) {
             >
               {todo.task}
             </p>
+            <p className={styles.time}>{todo.desp}</p>
             <p className={styles.time}>{todo.updated_at}</p>
           </div>
         </div>

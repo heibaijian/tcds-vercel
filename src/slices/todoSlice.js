@@ -14,7 +14,6 @@ const privateKey = process.env.REACT_APP_PRIVATEKEY;
 // const publicKey = 'C0S3RM70';
 // const privateKey = 'e9dc2187-c344-4a9e-afb2-78d1318d4900';
 
-
 export const fetchTodoList = createAsyncThunk('getTodoList', async () => {
   const response = await fetch(apiUrl, {
     method: 'GET',

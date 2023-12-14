@@ -1,102 +1,63 @@
-![React Todo App](./banner.png)
+![Task Tracker Application](./banner.png)
 
-# React Todo App.
+# TiDB Cloud Data Service - Task Tracker Application.
 
-A complete todo application with all features.
+Task Tracker is an efficient and user-friendly application designed to manage your daily tasks with ease.
 
-**live demo: [https://wc-react-todo-app.netlify.app/](https://wc-react-todo-app.netlify.app/)**
+**live demo: [https://task-tracker-hongmenglv-pingcapcom.vercel.app/](https://task-tracker-hongmenglv-pingcapcom.vercel.app/)**
 
-**Watch On Youtube: [https://youtu.be/W0Uf_xu350k](https://youtu.be/W0Uf_xu350k)**
-
----
-
-### Made with ❤️ by [Shaif Arfan](https://www.instagram.com/shaifarfan08/)
-
-Like my works and want to support me?
-
-<a href="https://www.buymeacoffee.com/shaifarfan08" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 45px !important;width: 162.75px !important;" ></a>
+**Watch On Youtube: [https://youtu.be/?](https://youtu.be/?)**
 
 ---
 
 ## Project Description
 
-In the project, we will be creating a Complete Todo Application with all features. We will do all the CRUD operations. We will use `React.js` and to manage our states, we will use `Redux`. Also we will learn to make simple animations using `Framer Motion`. This will be a complete `beginner` friendly app. Hope you enjoy it.
-
-## What we are going to learn/use
-
-- [React](https://reactjs.org/)
-- [React Redux](https://redux.js.org/)
-- [Framer Motion](https://framer.com/motion/)
-- [React icons](https://react-icons.netlify.com/)
-- [React Hot Toast](https://react-hot-toast.com/)
-- More...
-
-## Requirements
-
-- Basic ReactJs knowledge
-- Basic HTML, CSS knowledge
-
-## Starter files
-
-You can find all the starter files in `starter-files` branch. You can go to the `starter-files` branch and `download zip` the starter files or You can clone the project and git checkout to `starter-files` branch.
+The Task Tracker Application will feature functionality for adding, deleting, editing, and querying tasks. Additionally, it will boast a simple and user-friendly interface.
+For the backend, there is no need to write program code; instead, you can utilize the powerful interface capabilities of TCDS to accomplish the implementation of backend CRUD (Create, Read, Update, Delete) api. As for the frontend, it will be developed using React.js technology. Ultimately, the application will be deployed on the Vercel platform.
+Hope you enjoy it.
 
 ## Getting Started
 
-The recommended way to get started with the project is to follow the [YouTube tutorial](https://youtu.be/W0Uf_xu350k). You will find all the step-by-step guides. Or you can start the project on your own by following the guide below.
+The recommended way to get started with the project is to follow the [ blog ]() or the [vlog tutorial](https://youtu.be/?). You will find all the step-by-step guides.
 
-After getting the starter files, you need to go the file directory and run
+First, deploy the necessary endpoints using TCDS for the backend development. Next, utilize the frontend code available in this repository for the frontend development. Lastly, proceed to deploy the frontend through the Vercel platform.
 
+If you have deployed endpoints from TCDS and you want deploy it locally, you need to replace some variables and run
+
+Find the variables in src/slices/todoSlice.js
+```shell
+const apiUrl = process.env.REACT_APP_APIURL;
+const publicKey = process.env.REACT_APP_PUBLICKEY;
+const privateKey = process.env.REACT_APP_PRIVATEKEY;
+```
+
+Replace real value to the variables
+``` shell
+const apiUrl = <Open the endpoint page, then copy the Endpoint URL from the properties>;
+const publicKey = <The public key is generated when creating the API key>;
+const privateKey = <The private key is generated when creating the API key.>;
+```
+
+Install packages.
 ```shell
 npm install
 ```
 
-and after that start the dev server.
+and after that start the local server.
 
 ```shell
 npm start
 ```
 
-## Tools Used
-
-1. Favicon: [Flaticon.com](https://www.flaticon.com/)
-1. Code Editor: [VS Code](https://code.visualstudio.com/)
-
-## Other projects
-
-📚 [All Web Cifar Project Tutorials](https://github.com/ShaifArfan/wc-project-tutorials)
-
----
-
-## FAQ
-
-### Q: How can i get started?
-
-You can get started by following the [YouTube tutorial](https://youtu.be/W0Uf_xu350k) of this project. Here is the full tutorial video link: [coming soon].
-
-### Q: What i need to start the project?
-
-Just open your favorite code editor and follow along with the [YouTube tutorial](https://youtu.be/W0Uf_xu350k).
-
-### Q: What are the prerequisites?
-
-basics of html, css, javascript and some basic knowledge of react is enough to start this project. Rest you will learn in the tutorial.
-
-### Q: Who the project is for?
-
-The project is for the people who wanna get more skilled in `ReactJs`.
-
 ---
 
 ## Feedback
 
-If you have any feedback, please reach out to us at [@web_cifar](http://instagram.com/web_cifar)
+If you have any feedback, please reach out to us at [Support](https://tidbcloud.com/console/support)
 
-## Support
+## Citation
 
-For support, join our [Community Group](http://facebook.com/groups/webcifar).
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+This project is based on the original work by Shaif Arfan available at [react-todo-app](https://github.com/ShaifArfan/react-todo-app). 
+Modifications were made to The modifications include replacing the original frontend storage for the to-dos with backend API calls to a TCDS. Additionally, some adjustments have been made to the UI to accommodate our existing data set.
 
 Happy Coding! 🚀
